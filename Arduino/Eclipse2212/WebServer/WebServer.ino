@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 #include <SPI.h>
 #include <Ethernet.h>
 
@@ -10,6 +11,38 @@ void setup()
 {
     Ethernet.begin(mac, ip);  // initialize Ethernet device
     server.begin();           // start to listen for clients
+=======
+
+#include <SPI.h>
+#include <Ethernet.h>
+#include <SD.h>
+
+byte mac[] = { 0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0xED }; //Add MAC Adress
+IPAddress ip(192, 168, 1, 99); //Adresse IP
+EthernetServer server(80);  // Crée le serveur au port 80
+
+File webFile;
+
+void setup()
+{
+    Ethernet.begin(mac, ip);  // Initialise le service Ethernet
+    server.begin();           // Commence à écouter les clients
+    Serial.begin(9600);       // Débogage
+    
+    // Initialise la carte SD
+    Serial.println("Initializing SD card...");
+    if (!SD.begin(4)) {
+        Serial.println("ERROR - SD card initialization failed!");
+        return;    // init échoué
+    }
+    Serial.println("SUCCESS - SD card initialized.");
+    // Cherche le fichier HTML
+    if (!SD.exists("index.htm")) {
+        Serial.println("ERROR - Can't find index.htm file!");
+        return;  // Impossible de trouver le fichier
+    }
+    Serial.println("SUCCESS - Found index.htm file.");
+>>>>>>> origin/master
 }
 
 void loop()
@@ -30,6 +63,7 @@ void loop()
                     client.println("Connection: close");
                     client.println();
                     // send web page
+<<<<<<< HEAD
                     client.println("<!DOCTYPE html>");
                     client.println("<html>");
                     client.println("<head>");
@@ -40,6 +74,15 @@ void loop()
                     client.println("<p>A web page from the Arduino server</p>");
                     client.println("</body>");
                     client.println("</html>");
+=======
+                    webFile = SD.open("index.htm");        // open web page file
+                    if (webFile) {
+                        while(webFile.available()) {
+                            client.write(webFile.read()); // send web page to client
+                        }
+                        webFile.close();
+                    }
+>>>>>>> origin/master
                     break;
                 }
                 // every line of text received from the client ends with \r\n
