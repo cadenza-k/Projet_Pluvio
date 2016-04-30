@@ -20,7 +20,7 @@ $.ajax( {  //On va chercher le fichier grâce à AJAX
                          {
                             var id = $(this).attr('id');
                             var data = $(this).find('data').text();
-                            $('<div class="items" id="link"></div>').html('<tr><td>' + id + '</td><td>' + data + '</td></tr>').appendTo("#Pluvio > tbody:last");
+                            $("#Pluvio > tbody:last").append('<tr><td>' + id + '</td><td>' + data + '</td></tr>');
                          });
                       }
         });
