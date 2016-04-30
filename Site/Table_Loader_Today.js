@@ -7,7 +7,6 @@ var Jour = Moment.format("D");
 var Mois = Moment.format("MM");
 var Annee = Moment.format("Y");
 var FormatFichier = Jour + '_' + Mois + '_' + Annee + '.xml';
-//alert(FormatFichier);
 
 
 $.ajax( {
