@@ -1,37 +1,36 @@
-table
-
-{
+table {
     margin: auto;
-    border-collapse: collapse
-
+    border-collapse: collapse;
 }
 
-td, th /* Mettre une bordure sur les td ET les th */
-
-{
-
-    border: 1px solid black; 
-
+th, td { /* Mettre une bordure sur les td ET les th */
+    border: 1px solid black;
+    text-align: center
+    
 }
 
 #nav li {
-  display: inline;
-  text-align: center;
+    display: inline;
+    text-align: center;
 }
 
 #nav li a {
-  padding: 4px 20px ;
-  background: #0066cc ; /* Couleur de fond : Bleu foncé*/
-  color: #fff ; /*Couleur du Texte*/
-  border: 1px solid #600 ; /*Taille & couleur du cadre*/
-  font: 1em "Trebuchet MS",Arial,sans-serif ; /*Police d'écriture */
-  line-height: 1em ; /*Sais pas XD*/
-  text-align: center ; /*On centre le tout*/
-  text-decoration: none ; /*Pas de déco D:*/
+    padding: 4px 20px ;
+    background: #0066cc ; /* Couleur de fond : Bleu foncé*/
+    color: #fff ; /*Couleur du Texte*/
+    border: 1px solid #600 ; /*Taille & couleur du cadre*/
+    font: 1em "Trebuchet MS",Arial,sans-serif ; /*Police d'écriture */
+    line-height: 1em ; /*Sais pas XD*/
+    text-align: center ; /*On centre le tout*/
+    text-decoration: none ; /*Pas de déco D:*/
 }
 
 #nav li a:hover, #nav li a:focus, #navigation li a:active { /*Au survol*/
-  background: #4da6ff ; /*Couleur au survol : Bleu-Clair*/
-  text-decoration: underline ; /*On souligne*/
-  text-align: center ; /*On centre*/
+    background: #4da6ff ; /*Couleur au survol : Bleu-Clair*/
+    text-decoration: underline ; /*On souligne*/
+    text-align: center ; /*On centre*/
+}
+
+body {
+    background-color: white;
 }
