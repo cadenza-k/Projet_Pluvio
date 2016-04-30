@@ -1,16 +1,17 @@
 $(document).ready(
  function() 
  {
-var d = new Date();
-var month = d.getMonth()+1;
-var day = d.getDate();
-var horodatage = d.getFullYear() + '_' + (('' + month).length<2 ? '0' : '') + month + '_' + (('' + day).length<2 ? '0' : '') + day;
-var XMLFichier = horodatage + '.xml'
+var Moment = moment();
+Moment.locale('fr');
+var Jour = Moment.format("D");
+var Mois = Moment.format("MM");
+var Annee = Moment.format("Y");
+var FormatFichier = Jour + '_' + Mois + '_' + Annee + '.xml';
 
 
 $.ajax( {
             type: "GET",
-            url: "Pluvio.xml",
+            url: FormatFichier,
             dataType: "xml",
             success: function(xml) 
                      {
@@ -19,7 +20,7 @@ $.ajax( {
                          {
                             var id = $(this).attr('id');
                             var data = $(this).find('data').text();
-                            $('<div class="items" id="link_' + id + '"></div>').html('<tr><td>' + id + '</td><td>' + data + '</td></tr>').appendTo("#Pluvio > tbody:last");
+                            $('<div class="items" id="link"></div>').html('<tr><td>' + id + '</td><td>' + data + '</td></tr>').appendTo("#Pluvio > tbody:last");
                          });
                       }
         });
