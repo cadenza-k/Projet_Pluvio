@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="Test_Mois.css"> <!-- Charge le CSS -->
+        <meta charset="utf-8"> <!-- DU UTF-8 SINON RIEN! -->
+        <title>ProjetPluvio</title>
+    </head>
+    <body>
+    <ul id="nav"> <!-- Module de navigation -->
+        <li><a href="Index.html" title="Menu principal / Aujourd'hui!">Aujourd'hui / Index</a></li>
+        <li><a href="Jour_avant.html" title="données d'hier!">Hier</a></li>
+        <li><a href="Avant_Hier.html" title="Avant-hier">Avant-hier</a></li>
+        <li><a href="Semaine_Avant.html" title="La semaine dernière">La semaine dernière</a></li>
+        <li><a href="#" title="aller à la section 5">Le mois dernier</a></li>
+    </ul>
+        
+        <table id="Pluvio"> <!-- En-tête préfabriqué -->
+            <caption>Relevés de pluviométrie</caption>
+            <tbody>
+                <tr>
+                    <th>Jour</th>
+                    <th>Précipitations 24h</th>
+                </tr>
+            </tbody>
+        </table>
+        <div id="TEST"></div> <!-- Div qui sert uniquement aux tests -->
+        
+    <script type="text/javascript" src="Jquery.js"></script> <!-- Charge le framework Jquery -->
+    <script type="text/javascript" src="moment-with-locales.js"></script> <!-- Charge la librairie Moment.js -->
+    <script type="text/javascript" src="Test_Mois.js"></script> <!-- Charge le Script Qui génère le contenu des tableaux -->
+    </body>
+</html>
