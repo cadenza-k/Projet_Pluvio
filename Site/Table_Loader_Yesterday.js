@@ -1,19 +1,18 @@
 $(document).ready(
  function() 
  {
-var d = new Date(); // Récupère la date du jour via Internet et le stocke en d
-var month = d.getMonth()+1; // Extrait le mois de d
-var day = d.getDate();
-day--; //Fonction embryonnaire permettant de reculer d'un jour
-     alert(d);
-var horodatage = d.getFullYear() + '_' + (('' + month).length<2 ? '0' : '') + month + '_' + (('' + day).length<2 ? '0' : '') + day;
-var XMLFichier = horodatage + '.xml'
-$('<p>' + month + '</p>').appendTo("#TEST")
+var Moment = moment();
+Moment.locale('fr');
+var Jour = Moment.subtract(1, 'Days').format("D");
+var Mois = Moment.format("MM");
+var Annee = Moment.format("Y");
+var FormatFichier = Jour + '_' + Mois + '_' + Annee + '.xml';
+//alert(FormatFichier);
 
 
 $.ajax( {
             type: "GET",
-            url: "Pluvio.xml",
+            url: FormatFichier,
             dataType: "xml",
             success: function(xml) 
                      {
