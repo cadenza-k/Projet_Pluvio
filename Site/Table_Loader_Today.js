@@ -14,6 +14,7 @@ $.ajax( {   //On va chercher le fichier grâce à AJAX
             type: "GET",
             url: FormatFichier, //Le nom de fichier est fourni par la variable "FormatFichier"
             dataType: "xml",
+            error: alert('Fichier non trouvé'),
             success: function(xml) 
                      {
                        $(xml).find('heure').each(   
