@@ -28,14 +28,14 @@ while(Jour > 0)
             dataType: "xml",
             success: function(xml)
                      {
-                       $(xml).find('heure').each(   //Pour chaque balise <heure></heure>, faire
-                         function()
-                         {
+                        $(xml).find('heure').each(   //Pour chaque balise <heure></heure>, faire
+                        function()
+                        {
                             data = $(this).find('data').text();
                             Data= Data + parseInt(data);
-                         });
-                         console.log(Data);
-      
+                        });
+                        console.log(Data);
+                        
 					 }
         });
     }
