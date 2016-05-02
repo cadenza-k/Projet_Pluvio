@@ -1,9 +1,8 @@
-<<<<<<< HEAD
 #include <SPI.h>
 #include <Ethernet.h>
 
 // MAC address from Ethernet shield sticker under board
-byte mac[] = { 0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0xED };
+byte mac[] = { 0x90, 0xA2, 0xDA, 0x0F, 0x3B, 0x56 };
 IPAddress ip(10, 0, 0, 20); // IP address, may need to change depending on network
 EthernetServer server(80);  // create a server at port 80
 
