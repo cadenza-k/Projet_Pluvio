@@ -1,0 +1,12 @@
+PRIXS:
+
+Pluviomètre à Augets : 58.30 - 69.00€
+Ardiuno/Genuino Uno : 20.00€
+Shield Ethernet : 15.00€
+Micro SD 4-16Go : 2.45 - 6.99€
+Blindage de base Grove (shield) : 9.54€
+RTC Grove : 7.39€
+LCD 16*2 Grove : 14.50€
+
+TOTAL : 142.42€ si on prend le plus cher
+	127.38€ si on prend le moins cher
