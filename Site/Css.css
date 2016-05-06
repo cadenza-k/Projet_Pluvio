@@ -1,26 +1,21 @@
-table
-
-{
-    margin: auto;
-    border-collapse: collapse
-
-}
-
-td, th /* Mettre une bordure sur les td ET les th */
-
-{
-
-    border: 1px solid black;
-
-}
-
-/*
-#link { 
-    border: 1px solid black;
+table {
+    
     margin: auto;
     border-collapse: collapse;
+
 }
-*/
+
+td, th { /* Mettre une bordure sur les td ET les th */
+
+    border: 1px solid black;
+
+}
+
+th {
+    
+    background: #ffffcc; /*Pour avoir la permière ligne de la même couleur que la dernière*/
+
+}
 
 #nav li {
   display: inline;
