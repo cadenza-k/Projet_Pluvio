@@ -1,102 +1,74 @@
 #include <SPI.h>
 #include <Ethernet.h>
-
-// MAC address from Ethernet shield sticker under board
-byte mac[] = { 0x90, 0xA2, 0xDA, 0x0F, 0x3B, 0x56 };
-IPAddress ip(10, 0, 0, 20); // IP address, may need to change depending on network
-EthernetServer server(80);  // create a server at port 80
-
-void setup()
-{
-    Ethernet.begin(mac, ip);  // initialize Ethernet device
-    server.begin();           // start to listen for clients
-=======
-
-#include <SPI.h>
-#include <Ethernet.h>
 #include <SD.h>
 
-byte mac[] = { 0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0xED }; //Add MAC Adress
-IPAddress ip(192, 168, 1, 99); //Adresse IP
-EthernetServer server(80);  // Crée le serveur au port 80
+// Adresse MAC
+byte mac[] = { 0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0xED };
+IPAddress ip(192, 168, 1, 99); // Adresse IP
+EthernetServer server(80);  // Port du serveur
 
 File webFile;
 
 void setup()
 {
-    Ethernet.begin(mac, ip);  // Initialise le service Ethernet
-    server.begin();           // Commence à écouter les clients
-    Serial.begin(9600);       // Débogage
+    Ethernet.begin(mac, ip);  // Initialise le protocole Ethernet
+    server.begin();           // Démarre l'écoute des clients
+    Serial.begin(9600);       // Pour débugger(au cas où)
     
     // Initialise la carte SD
-    Serial.println("Initializing SD card...");
+    Serial.println("Initialisation de la carte SD...");
     if (!SD.begin(4)) {
-        Serial.println("ERROR - SD card initialization failed!");
-        return;    // init échoué
+        Serial.println("ERREUT - Initialisation échoué!");
+        return;    // init failed
     }
-    Serial.println("SUCCESS - SD card initialized.");
-    // Cherche le fichier HTML
-    if (!SD.exists("index.htm")) {
-        Serial.println("ERROR - Can't find index.htm file!");
-        return;  // Impossible de trouver le fichier
+    Serial.println("Carte SD initialisée.");
+    // check for index.htm file
+    if (!SD.exists("Index.html")) {
+        Serial.println("ERREUR - Fichier introuvable!");
+        return;  // can't find index file
     }
-    Serial.println("SUCCESS - Found index.htm file.");
->>>>>>> origin/master
+    Serial.println("Fichier trouvé.");
 }
 
 void loop()
 {
-    EthernetClient client = server.available();  // try to get client
+    EthernetClient client = server.available();  // Ecoute les clients
 
-    if (client) {  // got client?
+    if (client) {  // On a un client?
         boolean currentLineIsBlank = true;
         while (client.connected()) {
-            if (client.available()) {   // client data available to read
-                char c = client.read(); // read 1 byte (character) from client
-                // last line of client request is blank and ends with \n
-                // respond to client only after last line received
+            if (client.available()) {   // Si les données sont disponible
+                char c = client.read(); // On lis un octet du client (1char)
+                // La dernière ligne de la requête client  est vide et se finis par un /n
+                // Répon dau client uniquement après que la dernière ligne est reçue
                 if (c == '\n' && currentLineIsBlank) {
-                    // send a standard http response header
+                    // Envoie un header de réponse HTTP standard
                     client.println("HTTP/1.1 200 OK");
                     client.println("Content-Type: text/html");
                     client.println("Connection: close");
                     client.println();
                     // send web page
-<<<<<<< HEAD
-                    client.println("<!DOCTYPE html>");
-                    client.println("<html>");
-                    client.println("<head>");
-                    client.println("<title>Arduino Web Page</title>");
-                    client.println("</head>");
-                    client.println("<body>");
-                    client.println("<h1>Hello from Arduino!</h1>");
-                    client.println("<p>A web page from the Arduino server</p>");
-                    client.println("</body>");
-                    client.println("</html>");
-=======
-                    webFile = SD.open("index.htm");        // open web page file
+                    webFile = SD.open("Index.html");        // Ouvre la page web
                     if (webFile) {
                         while(webFile.available()) {
-                            client.write(webFile.read()); // send web page to client
+                            client.write(webFile.read()); // Envoie au lcient la page web
                         }
                         webFile.close();
                     }
->>>>>>> origin/master
                     break;
                 }
-                // every line of text received from the client ends with \r\n
+                // Chaque ligne reçue du client finis par \r\n
                 if (c == '\n') {
-                    // last character on line of received text
-                    // starting new line with next character read
+                    // La ligne vide est lue
                     currentLineIsBlank = true;
                 } 
                 else if (c != '\r') {
-                    // a text character was received from client
+                    // Un morceau de texte est lu
                     currentLineIsBlank = false;
                 }
             } // end if (client.available())
         } // end while (client.connected())
-        delay(1);      // give the web browser time to receive the data
-        client.stop(); // close the connection
+        delay(1);      // Donne le temps au navigateur de récupérer les données
+        client.stop(); // ferme la connection
     } // end if (client)
 }
